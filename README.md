@@ -33,7 +33,7 @@ ReadingAloud
 ## user
 | Column | Type | Options|
 | --- | --- | --- |
-| username   | string | null: false |
+| name   | string | null: false |
 | email                | string | null: false |
 | password   | string | null: false |
 | password_confirmation| string | null: false |
@@ -58,13 +58,9 @@ ReadingAloud
 | book_id | integer | null: false |
 | category_id | integer | null: false |
 
-## view_history
+## user_book
 | Column  | Type   | Options |
 | --- | --- | --- |
 | user_id | integer | null: false |
+| book_id | integer | null: false |
 
-
-## favorite
-| Column  | Type   | Options |
-| --- | --- | --- |
-| user_id | integer | null: false |
