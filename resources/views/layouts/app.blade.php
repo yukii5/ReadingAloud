@@ -47,13 +47,13 @@
                         @guest
                             <!-- @if (Route::has('login')) -->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('ログイン') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             <!-- @endif -->
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('新規登録') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -93,7 +93,7 @@
               <div class="card-header">タグ一覧</div>
               <div class="card-body py-2 px-4">
                 <a class='d-block' href='/'>全て表示</a>
-        {{-- @foreach($tags as $tag)
+        <!-- {{-- @foreach($tags as $tag) -->
                   <a href="/?tag={{ $tag['name'] }}" class='d-block'>{{ $tag['name'] }}</a>
         @endforeach --}}
                 </div>

@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+.card-header {  
+  font-size:  48px;
+  color:#2596FF;
+  background-color: #EAF5FF !important;
+  border-bottom: medium solid #09C4FF !important;
+
+}
+
+.card-body{
+  background-color: #ffff;
+}
+
+.auth_name {
+  font-size: 18px !important;
+}
