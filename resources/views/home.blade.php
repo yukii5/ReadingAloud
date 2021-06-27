@@ -120,7 +120,7 @@
             onclick="location.href='#'">読み上げ
             </button>
             <button type="button" class="btn btn-outline-primary"
-            onclick="location.href='#'">テキスト入力へ
+            onclick="location.href='/create'">テキスト入力へ
             </button>
         </div>
         <div class="reading-setting">

@@ -472,12 +472,11 @@ margin: auto;
 
 .img-select{
 	flex: 1;
-	margin-left: 15%;
+	margin-right: 15%;
 }
 
 .title-select{
 	flex: 2;
-	margin-right: 15%;
 }
 
 .title-select-name{
@@ -496,12 +495,26 @@ margin: auto;
 
 .reading-btn button{
 margin-top: 30px;
-/* margin-left: 10%; */
 width: 70%;
 font-size: 24px;
-/* flex: 1; */
+}
+
+.title-text{
+	background-color: #ffff;
+	font-size: 24px ;
+	height: 60px;
+	border: none;
+}
+
+#preview{
+	width: 100% ;
+	margin-top: 10px;
+}
+
+.text-area{
+	width: 100%;
 }
 
 .reading-setting{
-	/* flex: 3; */
+	/* padding-top: 300px; */
 }
