@@ -24,7 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        //book一覧を取得
+        // ピックアップ
+        $pickup_books = Book::inRandomOrder()->where('status', 1)->get();//ランダムに表示
+        // dd($pickup_books);
+        //最新情報
+        $new_books = Book::where('status', 1)->orderBy('updated_at', 'DESC')->limit(4)->get();//statusが1の全て取得:最新4つを取得
+        return view('home', compact('new_books', 'pickup_books'));
     }
     
     public function create()
@@ -37,6 +43,13 @@ class HomeController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $image = $request->file('image');
+            if($request->hasFile('image')){
+                $path = \Storage::put('/public', $image);
+                $path = explode('/', $path);
+            }else{
+                $path = null;
+            }
         // dd($data);
         // POSTされたデータをDB（booksテーブル）に挿入
         // BookモデルにDBへ保存する命令を出す
@@ -44,11 +57,14 @@ class HomeController extends Controller
         //タグのIDが判明する
         // タグIDをBooksテーブルに入れてあげる
         $book_id = Book::insertGetId([
+            'image' => $path[1],
             'title' => $data['title'],
+            'subtitle' => $data['subtitle'],
             'author' => $data['author'],
             'content' => $data['content'],
-            //  'user_id' => $data['user_id'], 
-            //  'status' => 1
+            // 'category_id' => $category_id,
+             'user_id' => $data['user_id'], 
+             'status' => 1
         ]);
         
         // リダイレクト処理

@@ -1,4 +1,4 @@
-<link href="{{ asset('css/picup_slider.css') }}" rel="stylesheet">
+<link href="{{ asset('css/pickup_slider.css') }}" rel="stylesheet">
 
 @extends('layouts.app')
 @section('content')
@@ -16,22 +16,13 @@
 	<input id="r8" type="radio" name="slider8">
   <!-- スライド群 -->
   <div id="photos">
-  	<div id="photo1" class="pic"><a href="#"><img src="image/チータくん200右.jpg"></a></div>
-    <div id="photo2" class="pic"><a href="#"><img src="img10/m2.jpg"></a></div>
-    <div id="photo3" class="pic"><a href="#"><img src="img10/m3.jpg"></a></div>
-    <div id="photo4" class="pic"><a href="#"><img src="img10/m4.jpg"></a></div>
-    <div id="photo5" class="pic"><a href="#"><img src="img10/m5.jpg"></a></div>
-    <div id="photo6" class="pic"><a href="#"><img src="img10/m6.jpg"></a></div>
-    <div id="photo7" class="pic"><a href="#"><img src="img10/m7.jpg"></a></div>
-    <div id="photo8" class="pic"><a href="#"><img src="image/チータくん200右.jpg"></a></div>
-  	<div id="photo9" class="pic"><a href="#"><img src="img10/m1.jpg"></a></div>
-  	<div id="photo10" class="pic"><a href="#"><img src="img10/m2.jpg"></a></div>
-  	<div id="photo11" class="pic"><a href="#"><img src="img10/m3.jpg"></a></div>
-  	<div id="photo12" class="pic"><a href="#"><img src="img10/m4.jpg"></a></div>
-  	<div id="photo13" class="pic"><a href="#"><img src="img10/m5.jpg"></a></div>
+        @foreach($pickup_books AS $pickup_book)
+          <img src = "{{'/storage/'. $pickup_book['image'] }}" width = "25%" hspace="20px" vspace="20px">
+        @endforeach
+  	
   </div>
   <!-- スライダー部の高さ確保 -->
-  <div style="padding-top: 16%;"></div>
+  <div style="padding-top: 22%;"></div>
   <!-- スライドボタン -->
   <div id="btns">
   	<label for="r1" id="btn1" class="p_bar"></label>
@@ -93,12 +84,16 @@
             <div class = 'genre' >
                 新着作品
             </div>
-            <ul class = "new-list">
-                <li><a href="#">lisi1</a></li>
-                <li><a href="#">lisi2</a></li>
-                <li><a href="#">lisi3</a></li>
-                <li><a href="#">lisi4</a></li>
-            </ul>
+            <div class = "new-list">
+                @foreach($new_books AS $new_book)
+                    <div calss = "title">
+                    <a href="#">
+                    {{ $new_book['title'] }}
+                    <p>{{ $new_book['subtitle'] }}</p>
+                    </a>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
     <div class = "body-center">

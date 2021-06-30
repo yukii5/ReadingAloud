@@ -2,7 +2,7 @@
 
 @extends('layouts.app')
 @section('content')
-<form id = "main-text" method = 'POST' action = "/store">
+<form id = "main-text" method = 'POST' action = "/store" enctype = "multipart/form-data">
     @csrf
     <div class="container">
         <input type = 'hidden' name ='user_id' value = "{{ $user['id'] }}" >
