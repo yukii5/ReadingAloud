@@ -28,7 +28,7 @@
                 {{ config('app.name', 'Laravel') }}
             </a>
             <div class = "performance">
-                web小説がXX作品登録されています
+            web小説が {{ \App\Http\Controllers\HomeController::getMyCount() }}作品登録されています
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
@@ -91,7 +91,7 @@
       
         <!-- 3.リストの配置 -->
         <ul class="header_list">
-            <li><a href="#">ホーム</a></li>
+            <li><a href="home">ホーム</a></li>
             <li><a href="#">お気に入り</a></li>
             <li><a href="#">閲覧履歴</a></li>
             <li><a href="#">ランキング</a></li>

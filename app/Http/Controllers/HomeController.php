@@ -48,7 +48,7 @@ class HomeController extends Controller
                 $path = \Storage::put('/public', $image);
                 $path = explode('/', $path);
             }else{
-                $path = null;
+                $path[1] = null;
             }
         // dd($data);
         // POSTされたデータをDB（booksテーブル）に挿入
@@ -70,4 +70,20 @@ class HomeController extends Controller
         // リダイレクト処理
         return redirect()->route('home');
     }
+    
+    public function edit($id){
+        $user = \Auth::user();
+        $book = Book::where('status', 1)->where('id', $id)->where('user_id',  $user['id'])->first();
+        // dd($book);
+        
+        $books = Book::where('status', 1)->orderBy('updated_at', 'DESC')->limit(4)->get();//statusが1の全て取得:最新4つを取得
+        // dd($books);
+        return view('edit', compact('user', 'book', 'books'));
+    }
+    
+    public static function getMyCount() {
+        $count_books = Book::where('status', 1)->get()->count();//作品数を表示
+		return $count_books;
+	}
+
 }

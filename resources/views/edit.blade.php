@@ -6,7 +6,7 @@
     @csrf
     <div class="container">
         <div class = "genre">
-            <h1>新規作成</h1>
+            <h1>作品編集</h1>
         </div>
         <input type = 'hidden' name ='user_id' value = "{{ $user['id'] }}" >
         <div class = "body-center">
@@ -15,8 +15,8 @@
                     イメージ画像
                 </div>
                 <input type="file" name = 'image' class = "bg-white" id="myImage" accept="image/*"  onchange="setImage(this);" onclick="this.value = '';" >
-            
-                <img src="image/noimage.jpg" id = "preview">
+
+                <img src="{{ asset('image/noimage.jpg')}}" id = "preview">
                 <img id="preview" >
 
                 <script>
@@ -33,34 +33,33 @@
             <div class = "container-ceate">
                 <div class = "title-select">
                     <div class = "genre">
-                        タイトル
                     </div>
-                    <input type="text" name = 'title' class="title-text" size="50%" placeholder="タイトルを入力してください">
+                    <input type="text" name = 'title' class="title-text" size="50%" value={{ $book['title']}}>
                 </div>
                 <div class = "title-select">
                     <div class = "genre">
                         サブタイトル
                     </div>
-                    <input type="text" name = 'subtitle' class="title-text" size="50%" placeholder="サブタイトルを入力してください">
+                    <input type="text" name = 'subtitle' class="title-text" size="50%" value={{ $book['subtitle']}}>
                     <div class = "title-select">
                         <div class = "genre">
                             著者
                         </div>
-                        <input type="text" name = 'author' class="title-text" size="50%" placeholder="著者を入力してください">
+                        <input type="text" name = 'author' class="title-text" size="50%" value={{ $book['author']}}>
                     </div>
                 </div>
                 <div class = "title-select">
                     <div class = "genre">
                         カテゴリー
                     </div>
-                    <input type="text" name = 'category' class="title-text" size="50%" placeholder="カテゴリーを入力してください">
+                    <input type="text" name = 'category' class="title-text" size="50%" value='カテゴリーID'>
                 </div>
             </div>
         </div>
         <div class = "genre">
             テキスト
         </div>
-        <textarea class = "text-area" name = 'content' placeholder="読み上げる文章を入力してください">
+        <textarea class = "text-area" name = 'content'>{{ $book['content']}}
         </textarea>
     </div>
 </form>
@@ -72,7 +71,7 @@
         <button type="button" class="btn btn-info"
         onclick="location.href='#'">プレビュー
         </button>
-        <button type="submit" form="main-text" class="btn btn-outline-primary" >保存
+        <button type="submit" form="main-text" class="btn btn-outline-primary" >更新
         </button>
     </div>
     <div class="reading-setting">

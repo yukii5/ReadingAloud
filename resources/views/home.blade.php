@@ -17,7 +17,7 @@
   <!-- スライド群 -->
   <div id="photos">
         @foreach($pickup_books AS $pickup_book)
-          <img src = "{{'/storage/'. $pickup_book['image'] }}" width = "25%" hspace="20px" vspace="20px">
+          <img src = "{{'/storage/'. $pickup_book['image'] }}" width = "250px" height ="250px" hspace="20px" vspace="20px">
         @endforeach
   	
   </div>

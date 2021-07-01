@@ -16,10 +16,10 @@ class CreateBooksTable extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->text('image');
+            $table->text('image')->nullable()->default(null);
             $table->string('title');
-            $table->string('subtitle');
-            $table->string('author');
+            $table->string('subtitle')->nullable()->default(null);
+            $table->string('author')->nullable()->default(null);
             $table->longText('content');
             // $table->integer('category_id');
             $table->integer('status')->defalut('1');
