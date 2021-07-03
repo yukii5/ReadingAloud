@@ -25,12 +25,13 @@ class HomeController extends Controller
     public function index()
     {
         //book一覧を取得
+        $data = Book::where('status', 1)->get();
+        // dd($data);
         // ピックアップ
         $pickup_books = Book::inRandomOrder()->where('status', 1)->get();//ランダムに表示
-        // dd($pickup_books);
         //最新情報
         $new_books = Book::where('status', 1)->orderBy('updated_at', 'DESC')->limit(4)->get();//statusが1の全て取得:最新4つを取得
-        return view('home', compact('new_books', 'pickup_books'));
+        return view('home', compact('new_books', 'pickup_books', 'data'));
     }
     
     public function create()

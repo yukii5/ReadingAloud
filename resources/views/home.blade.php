@@ -82,14 +82,13 @@
         
         <div class="new-contents">
             <div class = 'genre' >
-                新着作品
+                更新された作品
             </div>
             <div class = "new-list">
                 @foreach($new_books AS $new_book)
                     <div calss = "title">
                     <a href="#">
                     {{ $new_book['title'] }}
-                    <p>{{ $new_book['subtitle'] }}</p>
                     </a>
                     </div>
                 @endforeach
@@ -105,7 +104,7 @@
                 選択中のタイトル
             </div>
             <div class = "title-select-name">
-            <a href="#">タイトル</a>
+            <a href="#"> {{ $new_book['title'] }}</a>
             </div>
         </div>
     </div>

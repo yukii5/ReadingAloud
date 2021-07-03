@@ -92,11 +92,20 @@
         <!-- 3.リストの配置 -->
         <ul class="header_list">
             <li><a href="home">ホーム</a></li>
-            <li><a href="#">お気に入り</a></li>
+            <!-- <li type = "button" onclick = "favorite()"> -->
+            <li id = "bookmark" onclick = "favorite()">お気に入り</li>
             <li><a href="#">閲覧履歴</a></li>
             <li><a href="#">ランキング</a></li>
-            <li><a href="#">新規投稿</a></li>
+            <li id = "posting" onclick = "post()">投稿</li>
         </ul>
+        <script>
+            function favorite() {
+                document.getElementById("bookmark").innerHTML= "<div class = 'pulldown'><a href='home'>お気に入りのタイトル</a><br><a href='home'>お気に入りのユーザー</a></div>";
+            }
+            function post() {
+                document.getElementById("posting").innerHTML= "<div class = 'pulldown'><a href='home'>新規投稿</a><br><a href='home'>続編投稿</a></div>";
+            }
+        </script>
          </div>
             </nav>
         <main class="main">

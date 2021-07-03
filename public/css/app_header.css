@@ -54,12 +54,26 @@ flex-wrap: wrap;
 .header_list li{
   text-align: center;
   height: 25px;
-  /* margin-top: px; */
   margin-right: 2px;
 }
 .header_list li a{
   font-size: 24px;
-  color: #fff;
+  color: #FFFF;
   font-weight: bold;
   padding: 20px;
+}
+#bookmark{
+  font-size: 24px;
+  color: #FFFF;
+  font-weight: bold;
+}
+
+#posting{
+  font-size: 24px;
+  color: #FFFF;
+  font-weight: bold;
+}
+
+.pulldown{
+  background-color: #2596FF;
 }
