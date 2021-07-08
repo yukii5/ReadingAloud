@@ -2,7 +2,7 @@
 
 @extends('layouts.app')
 @section('content')
-<form id = "main-text" method = 'POST' action = "/store" enctype = "multipart/form-data">
+<form id = "main-text" method = 'POST' action = "{{ route('update',  ['id' => $book['id'] ] )}}" enctype = "multipart/form-data">
     @csrf
     <div class="container">
         <div class = "genre">
@@ -52,7 +52,16 @@
                     <div class = "genre">
                         カテゴリー
                     </div>
-                    <input type="text" name = 'category' class="title-text" size="50%" value='カテゴリーID'>
+                    <div class="form-group">
+                        {{-- dd($categories) --}}
+                        <select class='form-text' name='category_id'>
+                        <!-- <select name = 'category_id' class="title-text" > -->
+                            @foreach($categories as $category)
+                            <option value="{{ $category['id'] }}" {{ $category['id'] == $book['category_id'] ? "selected" : "" }}>{{$category['name']}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <!-- <input type="text" name = 'category' class="title-text" size="50%" value='カテゴリーID'> -->
                 </div>
             </div>
         </div>
@@ -63,30 +72,14 @@
         </textarea>
     </div>
 </form>
-<div class="reading">
-    <div class="reading-btn">
-        <button type="button" class="btn btn-primary"
-        onclick="location.href='#'">読み上げ
+<div class="reading-edit">
+        <button type="submit" form="main-text" class="btn btn-primary" >更新
         </button>
-        <button type="button" class="btn btn-info"
-        onclick="location.href='#'">プレビュー
-        </button>
-        <button type="submit" form="main-text" class="btn btn-outline-primary" >更新
-        </button>
-    </div>
-    <div class="reading-setting">
-        <div class="form-group">
-            <button type="submit" class="btn search_btn">言語</button><input type="text" class="search_key" placeholder="日本語">
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn search_btn">音声</button><input type="text" class="search_key" placeholder="女性">
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn search_btn">速度</button><input type="range" class="search_key" >
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn search_btn">高低</button><input type="range" class="search_key" >
-        </div>
-    </div>
+        <form method = 'POST' action = "/delete/{{$book['id']}}" id = 'delete-form'>
+            @csrf
+            <button type="submit" class="btn btn-danger"
+            >削除
+            </button>
+        </form>
 </div>
 @endsection

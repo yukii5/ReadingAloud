@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
@@ -36,11 +37,32 @@ class HomeController extends Controller
     
     public function create()
     {
-        
         $user = \Auth::user();
-        return view('create', compact('user'));
+        $books = Book::where('status', 1)->orderBy('updated_at', 'DESC')->get();
+        return view('create', compact('user', 'books'));
     }
     
+    public function title()
+    {
+        $user = \Auth::user();
+        // dd($user);
+        return view('title', compact('user'));
+    }
+    
+    public function author()
+    {
+        $user = \Auth::user();
+        // dd($user);
+        $count_user_books = Book::where('status', 1)->where('user_id',  $user['id'])->get()->count();//作品数を表示
+        
+
+        $titles =  Book::where('status', 1)->where('user_id',  $user['id'])->groupBy('title')->get(['title']);
+        // dd($titles);
+        
+        return view('author', compact('user','count_user_books','titles'));
+    }
+    
+
     public function store(Request $request)
     {
         $data = $request->all();
@@ -54,7 +76,18 @@ class HomeController extends Controller
         // dd($data);
         // POSTされたデータをDB（booksテーブル）に挿入
         // BookモデルにDBへ保存する命令を出す
-
+        
+        // 同じカテゴリーがあるか確認
+        $exist_category = Category::where('name' , $data['category'])->first();
+        // dd($exist_category);
+        if (empty($exist_category['id']) ){
+                //カテゴリーをインサート
+                $category_id = Category::insertGetId(['name' => $data['category'] ]);
+            }else{
+                $category_id = $exist_category['id'];
+            }
+        // dd($category_id);
+// 
         //タグのIDが判明する
         // タグIDをBooksテーブルに入れてあげる
         $book_id = Book::insertGetId([
@@ -63,7 +96,7 @@ class HomeController extends Controller
             'subtitle' => $data['subtitle'],
             'author' => $data['author'],
             'content' => $data['content'],
-            // 'category_id' => $category_id,
+            'category_id' => $category_id,
              'user_id' => $data['user_id'], 
              'status' => 1
         ]);
@@ -79,12 +112,38 @@ class HomeController extends Controller
         
         $books = Book::where('status', 1)->orderBy('updated_at', 'DESC')->limit(4)->get();//statusが1の全て取得:最新4つを取得
         // dd($books);
-        return view('edit', compact('user', 'book', 'books'));
+        
+        $categories = Category::get()->all();
+        // dd($categories);
+        
+        return view('edit', compact('user', 'book', 'books', 'categories'));
     }
     
     public static function getMyCount() {
         $count_books = Book::where('status', 1)->get()->count();//作品数を表示
 		return $count_books;
 	}
+    
+    public function update(Request $request , $id){
+        $inputs = $request->all();
+        // dd($inputs);
+        Book::where('id', $id)->update([
+            'title' => $inputs['title'],
+            'subtitle' => $inputs['subtitle'],
+            'author' => $inputs['author'],
+            'author' => $inputs['author'],
+            'category_id' => $inputs['category_id'],
+            'content' => $inputs['content']  ] );
+        return redirect()->route('home')->with('success', '更新しました！');
+    }
+    
+    public function delete(Request $request , $id){
+        $inputs = $request->all();
+        // 論理削除
+        Book::where('id', $id)->update(['status' => 2 ] );
+        // 物理削除
+        // Book::where('id', $id)->delete();
+        return redirect()->route('home')->with('success', '削除しました！');
+    }
 
 }

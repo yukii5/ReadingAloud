@@ -87,7 +87,7 @@
             <div class = "new-list">
                 @foreach($new_books AS $new_book)
                     <div calss = "title">
-                    <a href="#">
+                    <a href="{{route('author')}}">
                     {{ $new_book['title'] }}
                     </a>
                     </div>
@@ -104,7 +104,7 @@
                 選択中のタイトル
             </div>
             <div class = "title-select-name">
-            <a href="#"> {{ $new_book['title'] }}</a>
+            <a href="#"> 選択中</a>
             </div>
         </div>
     </div>

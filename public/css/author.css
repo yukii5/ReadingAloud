@@ -1,0 +1,68 @@
+
+.user_name{
+	display: flex;
+	align-items: flex-end;
+	margin-top: 30px;
+	font-size: 48px;
+}
+
+.user_name p{
+	font-size: 20px;
+	margin-left: 20px;
+	margin-bottom: 12px;
+}
+
+
+
+.genre{
+	color: #2596FF;
+	font-size: 36px;
+	padding-left: 10%;
+	padding-top: 60px;
+	border-bottom:#09C4FF 3px solid;
+	display: flex;
+	align-items: flex-end;
+}
+
+.genre p{
+	font-size: 20px;
+	color: black;
+	margin-left: 20px;
+	margin-bottom: 6px;
+}
+
+.performance_list{
+	background-color: #ffff;
+	font-size: 24px ;
+	/* height: 60px; */
+}
+.performance_list table{
+	width: 100%;
+}
+.performance_list td{
+	font-size: 24px ;
+	border: 1px #b9d9f8 solid;
+	padding: 5px;
+	padding-left: 20px;
+}
+
+th.width20 {
+	width: 20%;
+}
+th.width80 {
+	width: 80%;
+}
+
+
+.favorite_registration{
+	display: flex;
+	margin: auto;
+	justify-content: center;
+	margin-top: 30px;
+}
+
+.favorite_registration button{
+	margin-top: 10px;
+	width: 70%;
+	font-size: 24px;
+}
