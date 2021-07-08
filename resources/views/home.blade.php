@@ -45,39 +45,14 @@
             <div class = 'genre' >
                 カテゴリーから探す
             </div>
-            <ul class = "category-list">
+            <div class ="category-list">
+                @foreach($categories as $category)
+                    <a href = "/?category = {{ $category['name']}}">{{ $category['name']}}</a>
+                @endforeach
+            </div>
+            <!-- <ul class = "category-list">
                 <li><a href="#">lisi1</a></li>
-                <li><a href="#">lisi2</a></li>
-                <li><a href="#">lisi3</a></li>
-                <li><a href="#">lisi4</a></li>
-                <li><a href="#">lisi1</a></li>
-                <li><a href="#">lisi2</a></li>
-                <li><a href="#">lisi3</a></li>
-                <li><a href="#">lisi4</a></li>
-                <li><a href="#">lisi1</a></li>
-                <li><a href="#">lisi2</a></li>
-                <li><a href="#">lisi3</a></li>
-                <li><a href="#">lisi4</a></li>
-                <li><a href="#">lisi1</a></li>
-                <li><a href="#">lisi2</a></li>
-                <li><a href="#">lisi3</a></li>
-                <li><a href="#">lisi4</a></li>
-                <li><a href="#">lisi2</a></li>
-                <li><a href="#">lisi3</a></li>
-                <li><a href="#">lisi4</a></li>
-                <li><a href="#">lisi1</a></li>
-                <li><a href="#">lisi2</a></li>
-                <li><a href="#">lisi3</a></li>
-                <li><a href="#">lisi4</a></li>
-                <li><a href="#">lisi1</a></li>
-                <li><a href="#">lisi2</a></li>
-                <li><a href="#">lisi3</a></li>
-                <li><a href="#">lisi4</a></li>
-                <li><a href="#">lisi1</a></li>
-                <li><a href="#">lisi2</a></li>
-                <li><a href="#">lisi3</a></li>
-                <li><a href="#">lisi4</a></li>
-            </ul>
+            </ul> -->
         </div>
         
         <div class="new-contents">

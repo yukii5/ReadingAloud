@@ -438,14 +438,9 @@ margin: auto;
 	background-color: #ffff;
 	list-style-type: none;
 	font-size: 20px;
-	display: flex;
+	padding-top: 20px;
+	padding-bottom: 20px;
 	flex-wrap: wrap;
-}
-
-.category-list li{
-	padding-top: 10px;
-	padding-left: 15px;
-	padding-right: 15px;
 }
 
 .new-list{

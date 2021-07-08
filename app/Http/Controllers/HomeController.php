@@ -37,29 +37,24 @@ class HomeController extends Controller
     
     public function create()
     {
-        $user = \Auth::user();
         $books = Book::where('status', 1)->orderBy('updated_at', 'DESC')->get();
-        return view('create', compact('user', 'books'));
+        return view('create', compact('books'));
     }
     
     public function title()
     {
-        $user = \Auth::user();
-        // dd($user);
-        return view('title', compact('user'));
+        return view('title');
     }
     
     public function author()
     {
-        $user = \Auth::user();
-        // dd($user);
         $count_user_books = Book::where('status', 1)->where('user_id',  $user['id'])->get()->count();//作品数を表示
         
 
         $titles =  Book::where('status', 1)->where('user_id',  $user['id'])->groupBy('title')->get(['title']);
         // dd($titles);
         
-        return view('author', compact('user','count_user_books','titles'));
+        return view('author', compact('count_user_books','titles'));
     }
     
 
@@ -86,7 +81,7 @@ class HomeController extends Controller
             }else{
                 $category_id = $exist_category['id'];
             }
-        // dd($category_id);
+        dd($category_id);
 // 
         //タグのIDが判明する
         // タグIDをBooksテーブルに入れてあげる
@@ -106,7 +101,6 @@ class HomeController extends Controller
     }
     
     public function edit($id){
-        $user = \Auth::user();
         $book = Book::where('status', 1)->where('id', $id)->where('user_id',  $user['id'])->first();
         // dd($book);
         
@@ -116,7 +110,7 @@ class HomeController extends Controller
         $categories = Category::get()->all();
         // dd($categories);
         
-        return view('edit', compact('user', 'book', 'books', 'categories'));
+        return view('edit', compact( 'book', 'books', 'categories'));
     }
     
     public static function getMyCount() {
