@@ -33,8 +33,15 @@
             <div class = "container-ceate">
                 <div class = "title-select">
                     <div class = "genre">
+                    タイトル
                     </div>
-                    <input type="text" name = 'title' class="title-text" size="50%" value={{ $book['title']}}>
+                    <div class="form-group">
+                        <select class='form-text' name='title_id'>
+                            @foreach($titles as $title)
+                            <option value="{{ $title['id'] }}" {{ $title['id'] == $book['title_id'] ? "selected" : "" }}>{{$title['name']}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                 <div class = "title-select">
                     <div class = "genre">
@@ -53,15 +60,12 @@
                         カテゴリー
                     </div>
                     <div class="form-group">
-                        {{-- dd($categories) --}}
                         <select class='form-text' name='category_id'>
-                        <!-- <select name = 'category_id' class="title-text" > -->
                             @foreach($categories as $category)
                             <option value="{{ $category['id'] }}" {{ $category['id'] == $book['category_id'] ? "selected" : "" }}>{{$category['name']}}</option>
                             @endforeach
                         </select>
                     </div>
-                    <!-- <input type="text" name = 'category' class="title-text" size="50%" value='カテゴリーID'> -->
                 </div>
             </div>
         </div>

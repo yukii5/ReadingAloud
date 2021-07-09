@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Title;
 
 class HomeController extends Controller
 {
@@ -72,6 +73,21 @@ class HomeController extends Controller
         // POSTされたデータをDB（booksテーブル）に挿入
         // BookモデルにDBへ保存する命令を出す
         
+        // 同じタイトルがあるか確認
+        $exist_title = Title::where('name' , $data['title'])->where('user_id' , $data['user_id'])->first();
+        // dd($exist_category);
+        if (empty($exist_title['id']) ){
+                //タイトルをインサート
+                $title_id = Title::insertGetId(['name' => $data['title'],'user_id' => $data['user_id'] ]);
+            }else{
+                $title_id = $exist_title['id'];
+            }
+
+        
+        // dd($title_id);
+
+        
+        
         // 同じカテゴリーがあるか確認
         $exist_category = Category::where('name' , $data['category'])->first();
         // dd($exist_category);
@@ -81,13 +97,13 @@ class HomeController extends Controller
             }else{
                 $category_id = $exist_category['id'];
             }
-        dd($category_id);
-// 
+        // dd($category_id);
+
         //タグのIDが判明する
         // タグIDをBooksテーブルに入れてあげる
         $book_id = Book::insertGetId([
             'image' => $path[1],
-            'title' => $data['title'],
+            'title_id' => $title_id,
             'subtitle' => $data['subtitle'],
             'author' => $data['author'],
             'content' => $data['content'],
@@ -101,16 +117,19 @@ class HomeController extends Controller
     }
     
     public function edit($id){
+        $user = \Auth::user();
+        
         $book = Book::where('status', 1)->where('id', $id)->where('user_id',  $user['id'])->first();
-        // dd($book);
+        // dd($user);
         
         $books = Book::where('status', 1)->orderBy('updated_at', 'DESC')->limit(4)->get();//statusが1の全て取得:最新4つを取得
         // dd($books);
         
+        $titles = Title::where('user_id', $user['id'])->get();
         $categories = Category::get()->all();
         // dd($categories);
         
-        return view('edit', compact( 'book', 'books', 'categories'));
+        return view('edit', compact( 'book', 'books', 'titles', 'categories'));
     }
     
     public static function getMyCount() {
@@ -122,7 +141,7 @@ class HomeController extends Controller
         $inputs = $request->all();
         // dd($inputs);
         Book::where('id', $id)->update([
-            'title' => $inputs['title'],
+            'title_id' => $inputs['title_id'],
             'subtitle' => $inputs['subtitle'],
             'author' => $inputs['author'],
             'author' => $inputs['author'],

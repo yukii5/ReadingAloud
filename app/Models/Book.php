@@ -16,6 +16,15 @@ class Book extends Model
               ->get();
           return $categories;
     }
+    public function myTitle(){
+        $title = \Request::query('title');
+          $titles = $this::select('titles.*')
+              ->leftJoin('titles', 'titles.id', '=','titles.title_id')
+              ->where('titles.name', $title)
+              ->where('status', 1)
+              ->get();
+          return $titles;
+    }
     
     use HasFactory;
 }
