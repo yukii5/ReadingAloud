@@ -7,6 +7,7 @@
         <img src="image/noimage.jpg" id = "preview">
         <div class ='title_name'>
         タイトル
+        {{ $titles['name']}}
                 <div class ='author_name'>著者
                 </div>
             </div>

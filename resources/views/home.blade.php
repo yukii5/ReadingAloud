@@ -50,9 +50,6 @@
                     <a href = "/?category = {{ $category['name']}}">{{ $category['name']}}</a>
                 @endforeach
             </div>
-            <!-- <ul class = "category-list">
-                <li><a href="#">lisi1</a></li>
-            </ul> -->
         </div>
         
         <div class="new-contents">
@@ -61,9 +58,9 @@
             </div>
             <div class = "new-list">
                 @foreach($new_books AS $new_book)
-                    <div calss = "title">
-                    <a href="{{route('author')}}">
-                    {{ $new_book['title'] }}
+                    <div calss = "title_id">
+                    <a href="/title/{{ $new_book['id'] }}">
+                    {{ $new_book['name'] }}
                     </a>
                     </div>
                 @endforeach

@@ -32,8 +32,9 @@ class HomeController extends Controller
         // ピックアップ
         $pickup_books = Book::inRandomOrder()->where('status', 1)->get();//ランダムに表示
         //最新情報
-        $new_books = Book::where('status', 1)->orderBy('updated_at', 'DESC')->limit(4)->get();//statusが1の全て取得:最新4つを取得
+        $new_books = Title::orderBy('updated_at', 'DESC')->limit(4)->get();//最新4つを取得
         return view('home', compact('new_books', 'pickup_books', 'data'));
+       
     }
     
     public function create()
@@ -42,18 +43,21 @@ class HomeController extends Controller
         return view('create', compact('books'));
     }
     
-    public function title()
+    public function title($id)
     {
-        return view('title');
+        $user = \Auth::user();
+        $title =  Book::where('status', 1)->where('title_id', $id)->first();
+        $titles = Title::where('id',$title['title_id'])->first();
+        return view('title', compact( 'title', 'titles'));
     }
     
     public function author()
     {
+        $user = \Auth::user();
         $count_user_books = Book::where('status', 1)->where('user_id',  $user['id'])->get()->count();//作品数を表示
         
 
-        $titles =  Book::where('status', 1)->where('user_id',  $user['id'])->groupBy('title')->get(['title']);
-        // dd($titles);
+        $titles =  Book::where('status', 1)->where('user_id',  $user['id'])->groupBy('title_id')->get(['title_id']);
         
         return view('author', compact('count_user_books','titles'));
     }

@@ -91,8 +91,7 @@
       
         <!-- 3.リストの配置 -->
         <ul class="header_list">
-            <li><a href="home">ホーム</a></li>
-            <!-- <li type = "button" onclick = "favorite()"> -->
+            <li><a href="/home">ホーム</a></li>
             <li id = "bookmark" onclick = "favorite()">お気に入り</li>
             <li><a href="#">閲覧履歴</a></li>
             <li><a href="#">ランキング</a></li>
