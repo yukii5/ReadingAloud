@@ -48,7 +48,9 @@ class HomeController extends Controller
         $user = \Auth::user();
         $title =  Book::where('status', 1)->where('title_id', $id)->first();
         $titles = Title::where('id',$title['title_id'])->first();
-        return view('title', compact( 'title', 'titles'));
+        $subtitles =  Book::where('status', 1)->where('title_id', $id)->get();
+        // dd($title);
+        return view('title', compact( 'title', 'titles', 'subtitles'));
     }
     
     public function author()

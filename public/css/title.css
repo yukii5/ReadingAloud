@@ -1,27 +1,49 @@
+.main{
+	width: 60%;
+	margin: auto;
+}
+
 
 .title_top{
 	display: flex;
-	margin: 40px;
+	margin-top: 40px;
 }
 
 #preview{
-	width: 300px;
+	width: 200px;
+	height: 200px;
 	margin-right: 50px;
-	flex: 1;
+	/* flex: 1; */
 }
 
 .title_name{
 	font-size: 48px;
 	position: relative;
-	flex: 3;
+	/* flex: 4; */
+	margin-left: 40px;
+	
 }
 
 .author_name{
 	font-size: 24px;
 	position: absolute;
-	right:40%;
-	margin-top: 20px;
+	margin-left: 300px;
+	right:0%;
+	margin-top: 60px;
 }
+
+.subtitle{
+	margin-top: 48px;
+	background-color: #ffff;
+	list-style-type: none;
+}
+.subtitles{
+	display: flex;
+	font-size:  28px;
+	justify-content: space-between;
+  flex-wrap: wrap;
+}
+
 
 .favorite_registration{
 	display: flex;
