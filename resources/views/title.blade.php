@@ -15,7 +15,7 @@
     <div class ='subtitle'>
         @foreach($subtitles AS $subtitle)
             <div class = "subtitles">
-                <a href = "#" >
+                <a href = "/edit/1/" >
                     {{ $subtitle['id']}}
                     {{ $subtitle['subtitle']}}
                 </a>

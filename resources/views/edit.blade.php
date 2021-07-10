@@ -77,6 +77,8 @@
     </div>
 </form>
 <div class="reading-edit">
+        <button type="button" onclick="location.href='#'" class="btn btn-info" >プレビュー
+        </button>
         <button type="submit" form="main-text" class="btn btn-primary" >更新
         </button>
         <form method = 'POST' action = "/delete/{{$book['id']}}" id = 'delete-form'>

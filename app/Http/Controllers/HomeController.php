@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Category;
 use App\Models\Title;
+use App\Models\Preview;
 
 class HomeController extends Controller
 {
@@ -51,6 +52,11 @@ class HomeController extends Controller
         $subtitles =  Book::where('status', 1)->where('title_id', $id)->get();
         // dd($title);
         return view('title', compact( 'title', 'titles', 'subtitles'));
+    }
+    public function preview($id)
+    {
+        // dd($title);
+        return view('preview');
     }
     
     public function author()
@@ -125,8 +131,9 @@ class HomeController extends Controller
     public function edit($id){
         $user = \Auth::user();
         
-        $book = Book::where('status', 1)->where('id', $id)->where('user_id',  $user['id'])->first();
-        // dd($user);
+        // $book = Book::where('status', 1)->where('id', $id)->where('user_id',  $user['id'])->first();
+        $book = Book::where('status', 1)->where('id', $id)->first();
+        // dd($book);
         
         $books = Book::where('status', 1)->orderBy('updated_at', 'DESC')->limit(4)->get();//statusが1の全て取得:最新4つを取得
         // dd($books);
