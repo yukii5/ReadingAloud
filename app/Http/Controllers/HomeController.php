@@ -50,13 +50,25 @@ class HomeController extends Controller
         $title =  Book::where('status', 1)->where('title_id', $id)->first();
         $titles = Title::where('id',$title['title_id'])->first();
         $subtitles =  Book::where('status', 1)->where('title_id', $id)->get();
-        // dd($title);
+        // dd($subtitles);
         return view('title', compact( 'title', 'titles', 'subtitles'));
     }
     public function preview($id)
     {
-        // dd($title);
-        return view('preview');
+        $user = \Auth::user();
+        $preview =  Book::where('status', 1)->where('id', $id)->first();
+        $previews = Title::where('id',$preview['title_id'])->first();
+        $count =  Book::where('status', 1)->where('title_id',$preview['title_id'] )->count();
+        
+        
+        $previous = Book::where('status', 1)->where('title_id',$preview['title_id'] )->Paginate(1);
+        // $previous = Book::where('status', 1)->paginate(1);
+        // dd($previous);
+        // $previous = Book::where('status', 1)->where('title_id',$preview['title_id'] )->where('id', '<', $data->id)->orderBy('id', 'desc')->first();
+        // $previous = Book::where('status', 1)->where('title_id',$preview['title_id'] )->where('id', '<', $data->id)->orderBy('id', 'desc')->first();
+        
+        
+        return view('preview', ['previous' =>$previous ],compact('preview', 'previews','count'));
     }
     
     public function author()

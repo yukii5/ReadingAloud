@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use App\Models\Book;
 use App\Models\Category;
-
+use Illuminate\Pagination\Paginator; 
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -35,6 +35,8 @@ class AppServiceProvider extends ServiceProvider
             $categoryModel = new Category();
             $categories = $categoryModel->get();
         $view->with('user', $user)->with('categories', $categories);
+        
+        Paginator::defaultView('original_pagination_view.blade.php');
         });
         // Schema::defaultStringLength(191);
     }

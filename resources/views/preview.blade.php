@@ -4,36 +4,38 @@
 @section('content')
     <div class="container">
         <div class="preview_header">
-            <img src="{{ asset('image/noimage.jpg')}}" id = "preview">
+            <img src = "{{'/storage/'. $preview['image'] }}"  id ="preview">
+            <!-- <img src="{{ asset('image/noimage.jpg')}}" id = "preview"> -->
             <div class = "preview_name">
                 <div class = "genre">
                     <div class = "title">
-                        <a href = '#'>タイトル</a>
-                        <p>著者： <a href = '#'>XXXX</a></p>
+                        <a href = "/title/{{$previews['id']}}">{{$previews['name']}}</a>
+                        <p>著者： <a href = '#'>{{$preview['author']}}</a></p>
                     </div>
                 </div>
                 <div class = "around">
-                    <a href = "#"><<前へ</a>
-                    <a href = "#">次へ>></a>
-                    <a href = "#">目次</a>
-                </div>
-                <div class = "count">
-                    8/100
+                    <p>
+                    <a href = "/title/{{$previews['id']}}">目次</a>
+                    </p>
+                    {{ $previous->links('vendor.pagination.original_pagination_view') }}
                 </div>
                 <div class = "genre">
-                    <h1>サブタイトル</h1>
+                    <h1>{{$preview['subtitle']}}</h1>
                 </div>
             </div>
         </div>
         <div class = "contents">
-            あsdfgひゅじぇsrdftyぐhじk
+        {{$preview['content']}}
         </div>
-        
-        <div class = "around">
-            <a href = "#"><<前へ</a>
-            <a href = "#">次へ>></a>
-            <a href = "#">目次</a>
+        <div class = "around_bottom">
+            <div class = "around">
+                <p>
+                <a href = "/title/{{$previews['id']}}">目次</a>
+                </p>
+                {{ $previous->links('vendor.pagination.original_pagination_view') }}
+            </div>
         </div>
+
 
 
     
