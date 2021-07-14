@@ -13,13 +13,11 @@
 	width: 200px;
 	height: 200px;
 	margin-right: 50px;
-	/* flex: 1; */
 }
 
 .title_name{
 	font-size: 48px;
 	position: relative;
-	/* flex: 4; */
 	margin-left: 40px;
 	
 }
@@ -27,9 +25,9 @@
 .author_name{
 	font-size: 24px;
 	position: absolute;
-	margin-left: 300px;
-	right:0%;
+	margin-left: 100%;
 	margin-top: 60px;
+	white-space: nowrap;
 }
 
 .subtitle{

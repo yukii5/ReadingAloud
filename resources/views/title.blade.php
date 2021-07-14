@@ -7,7 +7,8 @@
     <img src = "{{'/storage/'. $title['image'] }}"  id ="preview">
         <div class ='title_name'>
         {{ $titles['name']}}
-        <div class ='author_name'>著者：{{ $title['author']}}
+            <div class ='author_name'>
+                著者：{{ $title['author']}}
             </div>
         </div>
     </div>
